@@ -14,12 +14,13 @@ def vendor_list(request):
         data['error'] = {
             'error_status': True,
             'error_level': 'Important',
-            'error_text': 'Could not find any vendors!',
+            'error_text': 'Could not find any vendors',
             'error_name': 'No Vendors'
         }
         return HttpResponseNotFound(
             json.dumps(data),
-            content_type="application/json"
+            content_type="application/json",
+            status=404
         )
     try:
         data['vendors'] = []
@@ -79,14 +80,15 @@ def vendors_products(request, id=None):
         }
         return HttpResponseNotFound(
             json.dumps(data),
-            content_type="application/json"
+            content_type="application/json",
+            status=400
         )
 
     if len(vendor_list) == 0:
         data['error'] = {
             'error_status': True,
             'error_level': 'Important',
-            'error_text': 'Could not find any vendors for product %s!' % id,
+            'error_text': 'No vendors for product %s found' % id,
             'error_name': 'No Vendors for product %s' % id
         }
         return HttpResponse(
@@ -148,12 +150,13 @@ def vendor_details(request, id=None):
         data['error'] = {
             'error_status': True,
             'error_level': 'Important',
-            'error_text': 'Vendor with id %s not found!' % id,
+            'error_text': 'Vendor id %s not found' % id,
             'error_name': 'Vendor not found'
         }
         return HttpResponseNotFound(
             json.dumps(data),
-            content_type="application/json"
+            content_type="application/json",
+            status=404
         )
 
     try:

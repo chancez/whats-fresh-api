@@ -21,12 +21,13 @@ def product_list(request):
         data['error'] = {
             'error_status': True,
             'error_level': 'Important',
-            'error_text': 'Could not find any products!',
-            'error_name': 'No products'
+            'error_text': 'No products were found',
+            'error_name': 'Products not found'
         }
         return HttpResponseNotFound(
             json.dumps(data),
-            content_type="application/json"
+            content_type="application/json",
+            status=404
         )
 
     data['products'] = []
@@ -76,12 +77,13 @@ def product_details(request, id=None):
         data['error'] = {
             'error_status': True,
             'error_level': 'Important',
-            'error_text': 'Product with id %s not found!' % id,
+            'error_text': 'Product id %s was not found' % id,
             'error_name': 'Product Not Found'
         }
         return HttpResponse(
             json.dumps(data),
-            content_type="application/json"
+            content_type="application/json",
+            status=404
         )
 
     try:
@@ -124,12 +126,13 @@ def product_vendor(request, id=None):
         data['error'] = {
             'error_status': True,
             'error_level': 'Important',
-            'error_text': 'Vendor with id %s not found!' % id,
+            'error_text': 'Vendor id %s not found' % id,
             'error_name': 'Vendor Not Found'
         }
         return HttpResponse(
             json.dumps(data),
-            content_type="application/json"
+            content_type="application/json",
+            status=404
         )
  
     data['products'] = []

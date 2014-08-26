@@ -20,12 +20,13 @@ def story_details(request, id=None):
         data['error'] = {
             'error_status': True,
             'error_level': 'Important',
-            'error_text': 'Story with id %s not found!' % id,
+            'error_text': 'Story id %s not found' % id,
             'error_name': 'Story Not Found'
         }
         return HttpResponse(
             json.dumps(data),
-            content_type="application/json"
+            content_type="application/json",
+            status=404
         )
         
     try:
