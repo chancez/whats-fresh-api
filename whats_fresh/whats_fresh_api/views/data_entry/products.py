@@ -52,20 +52,22 @@ def product(request, id=None):
             'name': preparation.name
         })
 
-    title = "New Product"
-    post_url = reverse('new-product')
+    title = "Add a Product"
 
-    message = "Fields marked with bold are required."
+    message = "* = Required field"
+
+    post_url = reverse('new-product')
 
     json_preparations = json.dumps(data)
 
     return render(request, 'product.html', {
-        'parent_url': reverse('entry-list-products'),
+        'parent_url': [
+            {'url': reverse('home'), 'name': 'Home'},
+            {'url': reverse('entry-list-products'), 'name': 'Products'}],
         'json_preparations': json_preparations,
         'preparation_dict': data,
-        'parent_text': 'Product List',
-        'message': message,
         'title': title,
+        'message': message,
         'post_url': post_url,
         'errors': [],
         'product_form': product_form,
@@ -92,6 +94,8 @@ def product_list(request):
         products_list.append(product_data)
 
     return render(request, 'products_list.html', {
+        'parent_url': reverse('home'),
+        'parent_text': 'Home',
         'new_url': reverse('new-product'),
         'new_text': "New product",
         'title': "All products",

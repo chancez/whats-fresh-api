@@ -58,3 +58,8 @@ docs/_build/
 
 # Gedit backups
 *.*~
+
+.sass-cache
+*.map
+*.swp
+*.swo
