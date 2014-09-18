@@ -17,7 +17,7 @@ def vendor_list(request):
             'error_text': 'Could not find any vendors',
             'error_name': 'No Vendors'
         }
-        return HttpResponseNotFound(
+        return HttpResponse(
             json.dumps(data),
             content_type="application/json",
             status=404
