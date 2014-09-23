@@ -58,3 +58,6 @@ docs/_build/
 
 # Gedit backups
 *.*~
+
+# Kitchen logs, config, etc
+.kitchen/
