@@ -23,7 +23,10 @@ def login_user(request):
         else:
             next = request.POST.get('next')
             state = "Invalid username or password."
-    else:    
+    else:
         next = request.GET.get('next')
-    return render(request, 'auth.html', {'state':state, 'username': username, 'next': next})
-
+    return render(request, 'auth.html', {
+        'state': state,
+        'username': username,
+        'next': next}
+    )
